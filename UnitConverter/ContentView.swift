@@ -25,6 +25,9 @@ struct UnitSet: Hashable {
     let name: String
     let units: [Unit]
     
+    
+
+    
 }
 struct Unit: Hashable, Equatable  {
     static func == (lhs: Unit, rhs: Unit) -> Bool {
@@ -39,6 +42,17 @@ struct Unit: Hashable, Equatable  {
     let name: String
     let writtenUnit: String
     let unit: Dimension
+    
+    
+    let mf = MeasurementFormatter()
+    func convert(to newUnit: Unit, from value: Double) -> String {
+        mf.numberFormatter.maximumFractionDigits = 2
+        mf.unitOptions = .providedUnit
+        
+        let input = Measurement(value: value, unit: self.unit)
+        let output = input.converted(to: newUnit.unit)
+        return mf.string(from: output)
+    }
     
 }
 
@@ -66,6 +80,8 @@ let temps = [
     Unit(name: "Kelvin", writtenUnit: "K", unit: UnitTemperature.kelvin)
 
 ]
+
+let celsius = UnitTemperature.celsius
 
 let mass = [
     Unit(name: "Kilogram", writtenUnit: "kg", unit: UnitMass.kilograms),
@@ -141,7 +157,8 @@ struct ContentView: View {
                 //new value
                 
                 Section {
-                    Text("\()")
+                    Text(baseUnit.convert(to: newUnit, from: baseValue))
+                    
                     
                     
                 } header: {
