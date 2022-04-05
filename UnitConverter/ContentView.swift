@@ -24,10 +24,7 @@ struct UnitSet: Hashable {
 
     let name: String
     let units: [Unit]
-    
-    
 
-    
 }
 struct Unit: Hashable, Equatable  {
     static func == (lhs: Unit, rhs: Unit) -> Bool {
@@ -40,7 +37,6 @@ struct Unit: Hashable, Equatable  {
     
     
     let name: String
-    let writtenUnit: String
     let unit: Dimension
     
     
@@ -65,31 +61,31 @@ let unitTypes = [tempUnitSet, lengthUnitSet, massUnitSet]
 
 
 let lengths = [
-    Unit(name: "Meters", writtenUnit: "m", unit: UnitLength.meters),
-    Unit(name: "Kilometers", writtenUnit: "km", unit: UnitLength.kilometers),
-    Unit(name: "Feet", writtenUnit: "ft", unit: UnitLength.feet),
-    Unit(name: "Yards", writtenUnit: "yd", unit: UnitLength.yards),
-    Unit(name: "Miles", writtenUnit: "miles", unit: UnitLength.miles),
-    Unit(name: "Inches", writtenUnit: "in", unit: UnitLength.inches)
+    Unit(name: "Meters", unit: UnitLength.meters),
+    Unit(name: "Kilometers", unit: UnitLength.kilometers),
+    Unit(name: "Feet", unit: UnitLength.feet),
+    Unit(name: "Yards", unit: UnitLength.yards),
+    Unit(name: "Miles", unit: UnitLength.miles),
+    Unit(name: "Inches", unit: UnitLength.inches)
    
 ]
 
 let temps = [
-    Unit(name: "Celsius", writtenUnit: "°C", unit: UnitTemperature.celsius),
-    Unit(name: "Fahrenheit", writtenUnit: "°F", unit: UnitTemperature.fahrenheit),
-    Unit(name: "Kelvin", writtenUnit: "K", unit: UnitTemperature.kelvin)
+    Unit(name: "Celsius", unit: UnitTemperature.celsius),
+    Unit(name: "Fahrenheit", unit: UnitTemperature.fahrenheit),
+    Unit(name: "Kelvin", unit: UnitTemperature.kelvin)
 
 ]
 
 let celsius = UnitTemperature.celsius
 
 let mass = [
-    Unit(name: "Kilogram", writtenUnit: "kg", unit: UnitMass.kilograms),
-    Unit(name: "Pounds", writtenUnit: "lb", unit: UnitMass.pounds),
-    Unit(name: "Stones", writtenUnit: "stone", unit: UnitMass.stones),
-    Unit(name: "Short Tons", writtenUnit: "s. tons", unit: UnitMass.shortTons),
-    Unit(name: "Metric Tons", writtenUnit: "m. tons", unit: UnitMass.metricTons),
-    Unit(name: "Ounces", writtenUnit: "oz", unit: UnitMass.ounces)
+    Unit(name: "Kilogram", unit: UnitMass.kilograms),
+    Unit(name: "Pounds", unit: UnitMass.pounds),
+    Unit(name: "Stones", unit: UnitMass.stones),
+    Unit(name: "Short Tons", unit: UnitMass.shortTons),
+    Unit(name: "Metric Tons", unit: UnitMass.metricTons),
+    Unit(name: "Ounces", unit: UnitMass.ounces)
     
 ]
 
@@ -136,7 +132,7 @@ struct ContentView: View {
                 //New unit
                 
                 Section {
-                    Picker("Base unit", selection: $newUnit) {
+                    Picker("New unit", selection: $newUnit) {
                         ForEach(currentUnitType.units, id: \.self) {
                             Text($0.name)
                         }
